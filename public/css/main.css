@@ -1,0 +1,64 @@
+.main-title{
+    display: block;
+    text-align: center;
+    padding-top: 3%;
+    color: #0c5eda;
+}
+.title-div{
+    text-align: left;
+}
+.row{
+    padding-bottom: 1%;
+}
+
+.question-div, div.answer{
+    padding: 1%;
+    margin: 1%;
+    border: #0c5eda 1px solid;
+    border-radius: 10px;
+}
+
+.modify-icons i{
+    float: right;
+}
+.submit-holder{
+    padding-left: 45%;
+}
+
+.answer-icon i{
+    float: right;
+}
+
+.offset-md-2>p{
+    margin-top: 15%;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: #f72e2e;
+}
+
+.home{
+    margin-top: 5%;
+    margin-left: 46.7%;
+}
+
+form{
+    padding: 0%;
+    margin: 0%;
+}
+
+.form-container{
+    width: 55%;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+.like-holder div{
+    text-align:right;
+}
+.like-holder div:nth-child(2){
+    margin-right: -2%;
+}
+.send-holder{
+    margin-top: 3%;
+}
