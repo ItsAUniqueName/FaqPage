@@ -1,64 +1,59 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Gyik tesztprojekt
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Az alkalmazás Laravel keretrendszer segítségével készült és a feladatkiírás alapfunkcióit teljesíti:
 
-## About Laravel
+- kérdések létrehozása, törlése, módosítása
+- válaszok létrehozása egy bizonyos kérdéshez
+- válaszok törlése, frissítése
+- válaszok értékelése(like, dislike), ezen adatok megjelenítése
+- kérdésekre adott válaszok megjelenítése a kérdéseknél
+- kezdetleges frontoldalak elkészítése blade segítségével
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Megvalósításomban törekedtem mindent a lehető legegyértelműbben elkészíteni, tiszteletben tartva az MVC szemléletet. Az alkalmazáshoz MySql adatbázist használtam a fejlesztés során Xampp segítségével.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Beüzemelés
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- git repository letöltése
+- a letöltött könyvtár gyökerében terminál indítása
+- composer install parancs kiadása
+- .env file létrehozása a .env.example file másolásával
+- php artisan key:generate parancs kiadása
+- üres adatbázis létrehozása az alkalmazás számára
+- a .env fájlban a 11-116. sorban a db adatok megadása
+- php artisan migrate parancs futtatása
+- php artisan serve paranccsal az alkalmazás indítása
 
-## Learning Laravel
+## Template-k
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Az alkalmazás összesen hat template-t használ:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- layout.blade.php - a többi templatenek alapként szolgáló fájl, ebben találhatóak a külső fájlok linkjei
+- welcome.blade.php - kérdések listázása, nyitó oldal
+- create_question.blade.php - kérdés létrehozása
+- updateQuestion.blade.php - kérdés frissítése
+- questionDetails.blade.php - a kérdéshez tartozó válaszok listája, emellett itt lehet választ felvinni, törölni, illetve like-olni is
+- updateAnswer.blade.php - válasz frissítésére szolgáló felület
 
-## Laravel Sponsors
+## A web.php file
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+A web.php fájlban kerül lekezelésre az egyes hívások közvetítése a controller-ek felé. A tíz hívás nevét igyekeztem minél arulkodóbbra megválasztani, hogy tükrözze annak funkcionalitását.
 
-### Premium Partners
+## Controllerek
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Az alkalmazás két controller-t használ, az egyik a kérdések, a másik a válaszok kezelését végzi.
 
-## Contributing
+A QuestionController.php az alábbi feladatokat végzi el:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- kérdések létrehozása, model-en keresztül azok adatbázisba tárolása
+- létező kérdések törlése és frissítése
+- kérdések listázása (public function index())
+- egy kérdés részletes megnyitása, itt kiemelve látható a kérdés, illetve itt olvashatók a válaszok is
 
-## Code of Conduct
+Az AnswerController.php a válaszokat kezeli:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- válaszok létrehozása
+- válaszok törlése
+- válaszok frissítése
+- válaszokra adott visszajelzések kezelése
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+A controller-ek az adatbázisműveleteket a Question és az Answer model-eken keresztül végzik. Sajnos a krédések kategorizálását és a felhasználókezelést nem volt időm elkészíteni, így az ezekhez tartozó modeletet a rendszer jelen állapotában nem használja.

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
+    /**
+     * create new question
+     * @param request->questionTitle question title
+     * @param request->questionBody question answer
+     * author is set to 0 by default because the application doesn't handles users
+     */
     public function createQuestion(Request $request)
     {
         if($request && $request->questionTitle && $request->questionBody)
@@ -28,6 +34,10 @@ class QuestionController extends Controller
         }
     }
 
+    /**
+     * delete question
+     * @param request->id the id of the question we want to delete
+     */
     public function deleteQuestion(Request $request)
     {
         if(Question::find($request->id)->delete())
@@ -40,6 +50,12 @@ class QuestionController extends Controller
         return response()->json(['success'=>false]);
     }
 
+    /**
+     * update question
+     * @param request->id id of the question we want to modify
+     * @param request->title question title
+     * @param request->body question answer
+     */
     public function updateQuestion(Request $request)
     {
         $question = Question::find($request->id);
@@ -55,6 +71,9 @@ class QuestionController extends Controller
         }
     }
 
+    /**
+     * navigates to welcome page with the list of the questions
+     */
     public function index()
     {
         return view('welcome', ['listItems' => Question::all()]);

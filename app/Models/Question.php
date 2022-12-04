@@ -9,6 +9,10 @@ class Question extends Model
 {
     use HasFactory;
 
+    /**
+     * counts the answers given to a specific question
+     * @return integer number of the answers
+     */
     public function getAnswersNumber()
     {
         $answers = Answer::where("question_id", $this->id)->get();
